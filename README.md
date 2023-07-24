@@ -4,3 +4,7 @@
 
 デモページ：https://mmzspr.github.io/2D-Heat-Transfer-Simulation/
 
+## about
+- 2020年制作
+- Web上で実行可能な熱伝導のシミュレータです
+- 解法はヤコビ法、ガウス=ザイデル法、SOR法の中から選択可能
