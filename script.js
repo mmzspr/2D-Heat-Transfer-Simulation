@@ -48,11 +48,7 @@ function initialize() {
     divide = 20;
     document.getElementById("div").value = divide;
   }
-  epsilon = Number(document.getElementById("epsilon").value);
-  if (!epsilon || epsilon < 0) {
-    epsilon = 0.01;
-    document.getElementById("epsilon").value = epsilon;
-  }
+
   // 温度の初期値
   temp = new Array(divide + 1);
   for (i = 0; i < temp.length; i++) {
@@ -95,7 +91,7 @@ function drawXY() {
   context.lineTo(X(divide) + 20, Y(0));
   context.moveTo(X(0), Y(0));
   context.lineTo(X(0), Y(divide) - 20);
-  // context.closePath();
+  context.closePath();
   // 目盛描画
   for (let i = 0; i <= divide; i++) {
     if (i % 5) {
@@ -217,6 +213,7 @@ function Y(y) {
 
 // ----- 実行 -----
 function start() {
+  updateEpsilon();
   if (!timer) {
     timer = setInterval(update, 1);
     document.getElementById("start").innerHTML = "ストップ";
@@ -403,6 +400,15 @@ function calcSor() {
   document.getElementById("max-diff").innerHTML = maxDiff.toFixed(5);
   if (maxDiff <= epsilon) {
     end();
+  }
+}
+
+// ----- 終了条件の更新 -----
+function updateEpsilon() {
+  epsilon = Number(document.getElementById("epsilon").value);
+  if (!epsilon || epsilon < 0) {
+    epsilon = 0;
+    document.getElementById("epsilon").value = epsilon;
   }
 }
 
