@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="script.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>二次元熱伝導シミュレーション</title>
+    </head>
+
+    <body>
+        <h1>二次元熱伝導シミュレーション</h1>
+        
+        <div>
+            <canvas id="canvas" width="600" height="500"></canvas>
+        </div>
+
+        <div class="wrap">
+            <div>
+                <span>終了条件：</span>
+                <input type="number" id="epsilon" value="0.01">
+                
+                <span>></span>
+                <span id="max-diff">0.00000</span>
+                <span>= max(|u<sub>i,j</sub></span>
+                <sup>(n+1)</sup>-u<sub>i,j</sub>
+                <sup>(n)</sup>|) , ステップ数：<span id="step">0</span>
+            </div>
+            <div>
+                <span>計算手法：</span>
+                <select id="method">
+                    <option value="jacobi">ヤコビ法</option>
+                    <option value="GaussSeidel">ガウス＝ザイデル法</option>
+                    <option value="SOR">SOR法</option>
+                </select>
+                <span>SOR法 ω:</span>
+                <input type="number" id="omega" value="1.5">
+            </div>
+            <div>
+                <button type="button" id="start">実行</button>
+                <button type="button" id="reset">初期状態へ</button>
+                <button type="button" id="draw">0℃にセット</button>
+                <span>グラフサイズ：</span><input type="number" id="div" value="20"><br>
+            </div>
+            <div>
+                <span>描画設定：太さ</span><input type="number" id="draw-size" value="3">
+                <span>増分</span><input type="number" id="draw-strength" value="1"><span>℃</span>
+            </div>
+        </div>
+    </body>
+
+</html>

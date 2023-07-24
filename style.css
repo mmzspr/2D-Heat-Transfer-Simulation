@@ -1,0 +1,27 @@
+body{
+  color: rgb(100,100,100);
+  font-size: 16px;
+  line-height: 2;
+  text-align: center;
+}
+#step,#max-diff{
+  font-weight: bold;
+  color: rgb(0,0,0);
+}
+canvas{
+  border: solid 1px rgb(200,200,200);
+  margin-bottom: 10px;
+}
+input{
+  font-weight: bold;
+  width: 50px;
+}
+
+select{
+  font-weight: bold;
+}
+
+.wrap{
+  text-align: left;
+  display: inline-block;
+}
