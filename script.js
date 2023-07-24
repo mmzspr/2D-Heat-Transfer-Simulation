@@ -160,11 +160,11 @@ function drawTemp() {
 
 //----- 温度->色 変換 -----
 function color(x) {
-  max = 100;
-  min = 0;
+  const max = 100;
+  const min = 0;
   if (x > max) x = max;
   if (x < min) x = min;
-  palette = [
+  const palette = [
     [0, 0, 0],
     [0, 0, 255],
     [0, 255, 255],
@@ -174,8 +174,8 @@ function color(x) {
     [255, 255, 255],
   ];
 
-  index = Math.floor((x / (max - min)) * (palette.length - 1));
-  rate = (x / (max - min)) * (palette.length - 1) - index;
+  const index = Math.floor((x / (max - min)) * (palette.length - 1));
+  const rate = (x / (max - min)) * (palette.length - 1) - index;
   if (x == max) {
     red = palette[index][0];
     green = palette[index][1];
@@ -200,8 +200,8 @@ function color(x) {
 
 // ----- シグモイド関数(色グラデーション用) -----
 function sigmoid(x) {
-  gain = 5; // 勾配を調整する定数
-  offsetX = -0.5; // x座標平行移動
+  const gain = 5; // 勾配を調整する定数
+  const offsetX = -0.5; // x座標平行移動
   return (Math.tanh(((x + offsetX) * gain) / 2) + 1) / 2;
 }
 
@@ -283,13 +283,13 @@ function update() {
 //----- 演算 -----
 // ヤコビ法
 function calcJacobi() {
-  newTemp = new Array(temp.length);
-  maxDiff = 0;
+  const newTemp = new Array(temp.length);
+  let maxDiff = 0;
   for (let i = 0; i < temp.length; i++) {
     newTemp[i] = new Array(temp.length);
     for (let ii = 0; ii < temp[i].length; ii++) {
-      sum = 0;
-      count = 0;
+      let sum = 0;
+      let count = 0;
 
       if (i - 1 >= 0) {
         sum += temp[i - 1][ii];
@@ -323,13 +323,13 @@ function calcJacobi() {
 
 // ガウス＝ザイデル法
 function calcGaussSeidel() {
-  newTemp = new Array(temp.length);
-  maxDiff = 0;
+  const newTemp = new Array(temp.length);
+  let maxDiff = 0;
   for (let i = 0; i < temp.length; i++) {
     newTemp[i] = new Array(temp.length);
     for (let ii = 0; ii < temp[i].length; ii++) {
-      sum = 0;
-      count = 0;
+      let sum = 0;
+      let count = 0;
 
       if (i - 1 >= 0) {
         sum += newTemp[i - 1][ii];
@@ -368,13 +368,13 @@ function calcSor() {
     omega = 1.5;
     document.getElementById("omega").value = omega;
   }
-  newTemp = new Array(temp.length);
-  maxDiff = 0;
+  const newTemp = new Array(temp.length);
+  let maxDiff = 0;
   for (let i = 0; i < temp.length; i++) {
     newTemp[i] = new Array(temp.length);
     for (let ii = 0; ii < temp[i].length; ii++) {
-      sum = 0;
-      count = 0;
+      let sum = 0;
+      let count = 0;
 
       if (i - 1 >= 0) {
         sum += newTemp[i - 1][ii];
@@ -418,22 +418,19 @@ function mouseUp(e) {
 function mouseMove(e) {
   if (pointerFlag && !timer) {
     let size = Number(document.getElementById("draw-size").value);
-    let strength = Number(document.getElementById("draw-strength").value);
-    console.log(strength);
+    const strength = Number(document.getElementById("draw-strength").value);
+    
     if (!size || size <= 0) {
       size = 1;
       document.getElementById("draw-size").value = size;
     }
-    // if (!strength || strength <= 0) {
-    //   size = 1
-    //   document.getElementById("draw-strength").value = strength
-    // }
 
-    let eX = canvas.getBoundingClientRect().x;
-    let eY = canvas.getBoundingClientRect().y;
+    const eX = canvas.getBoundingClientRect().x;
+    const eY = canvas.getBoundingClientRect().y;
+    
     //canvas座標からxy座標に変換 (X(),Y()の逆関数)
-    x = ((e.clientX - eX - 50) / 420) * divide;
-    y = (-(e.clientY - eY + 50 - height) / 420) * divide;
+    const x = ((e.clientX - eX - 50) / 420) * divide;
+    const y = (-(e.clientY - eY + 50 - height) / 420) * divide;
 
     // マウスで描画された座標に温度を加える
     for (i = 0; i < temp.length; i++) {
