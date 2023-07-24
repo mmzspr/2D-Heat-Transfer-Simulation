@@ -281,6 +281,7 @@ function update() {
 }
 
 //----- 演算 -----
+// ヤコビ法
 function calcJacobi() {
   newTemp = new Array(temp.length);
   maxDiff = 0;
@@ -320,6 +321,7 @@ function calcJacobi() {
   }
 }
 
+// ガウス＝ザイデル法
 function calcGaussSeidel() {
   newTemp = new Array(temp.length);
   maxDiff = 0;
@@ -359,6 +361,7 @@ function calcGaussSeidel() {
   }
 }
 
+// SOR法
 function calcSor() {
   omega = Number(document.getElementById("omega").value);
   if (!omega) {
